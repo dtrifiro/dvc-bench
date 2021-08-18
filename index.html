@@ -1,155 +1,187 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title></title>
-<style type="text/css">
-.ansi2html-content { display: inline; white-space: pre; word-wrap: break-word; }
-.body_foreground { color: #AAAAAA; }
-.body_background { background-color: #000000; }
-.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
-.inv_foreground { color: #000000; }
-.inv_background { background-color: #AAAAAA; }
-.ansi1 { font-weight: bold; }
-.ansi31 { color: #aa0000; }
-.ansi32 { color: #00aa00; }
-.ansi33 { color: #aa5500; }
-</style>
-</head>
-<body class="body_foreground body_background" style="font-size: normal;" >
-<pre class="ansi2html-content">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>airspeed velocity</title>
+    <script type="text/javascript">
+      function js_load_failure() {
+        window.location = "error.html";
+      }
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery-3.3.1.min.js"
+            onerror="js_load_failure()">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery.flot-0.8.3.min.js"
+            onerror="js_load_failure()">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery.flot-0.8.3.time.min.js"
+            onerror="js_load_failure()">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery.flot-0.8.3.selection.min.js"
+            onerror="js_load_failure()">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery.flot-0.8.3.categories.min.js"
+            onerror="js_load_failure()">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery.flot.axislabels.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/jquery.flot.orderBars.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/stupidtable.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/md5.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="vendor/bootstrap-3.1.0.min.js"
+            onerror="js_load_failure()">
+    </script>
+    <link rel="stylesheet"
+          href="vendor/bootstrap-3.1.0.min.css"
+          type="text/css"/>
+    <script language="javascript" type="text/javascript"
+            src="asv.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="asv_ui.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="summarygrid.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="summarylist.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="graphdisplay.js">
+    </script>
+    <script language="javascript" type="text/javascript"
+            src="regressions.js">
+    </script>
+    <link href="asv.css" rel="stylesheet" type="text/css"/>
+    <link href="regressions.css" rel="stylesheet" type="text/css"/>
+    <link href="summarylist.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="swallow.ico"/>
+    <link rel="alternate" type="application/atom+xml" title="Regressions" href="regressions.xml"/>
+  </head>
+  <body>
+    <nav id="nav" class="navbar navbar-left navbar-default navbar-fixed-top" role="navigation">
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <p class="navbar-text">
+            <a href="http://github.com/airspeed-velocity/asv/" class="navbar-link" target="_blank"><img src="swallow.png" width="22" height="22" alt="swallow"></img>airspeed velocity</a>
+            of an unladen
+            <a id="project-name" href="#" class="navbar-link" target="_blank">project</a>
+          </p>
+        </li>
+	<li id="nav-li-" class="active"><a href="#/">Benchmark grid</a></li>
+	<li id="nav-li-summarylist"><a href="#/summarylist">Benchmark list</a></li>
+	<li id="nav-li-regressions"><a href="#/regressions">Regressions</a></li>
+        <li id="nav-li-graphdisplay">
+          <span class="navbar-brand" id="title">
+            benchmark
+          </span>
+        </li>
+      </ul>
+    </nav>
+    <div id="summarygrid-display" style="position: absolute; left: 0; top: 55px; width: 100%; height: 100%">
+    </div>
+    <div id="summarylist-display" style="width: 100%; height: 100%">
+      <div id="summarylist-navigation" class="asv-navigation" style="position: absolute; left: 0; top: 55px; bottom: 0; width: 200px; overflow-y: scroll">
+      </div>
+      <div id="summarylist-body" style="position: absolute; left: 200px; top: 55px; bottom: 0px; right: 0px; overflow-y: scroll;">
+      </div>
+    </div>
+    <div id="graph-display" style="width: 100%; height: 100%;">
+      <div id="graphdisplay-navigation" class="asv-navigation" style="position: absolute; left: 0; top: 55px; bottom: 0; width: 200px; overflow-y: scroll">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            commits
+          </div>
+          <div class="panel-body">
+            <input id="range" type="text" class="form-control" size="24" readonly/>
+          </div>
+        </div>
 
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------- benchmark 'test_add-add': 2 tests ----------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                       Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_add-add (benchmarks-tests-benchmarks-cli-commands-test_add.py-test_add/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  5.6571 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  5.6571 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  5.6571 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  5.6571 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.1768 (1.0)    </span>       1           1
-test_add-add (benchmarks-tests-benchmarks-cli-commands-test_add.py-test_add/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  8.9232 (1.58)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  8.9232 (1.58)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  8.9232 (1.58)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  8.9232 (1.58)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.1121 (0.63)   </span>       1           1
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            plot settings
+          </div>
+          <div class="panel-body">
+            <div class="btn-group-vertical" style="width: 100%" data-toggle="buttons">
+              <a id="log-scale" class="btn btn-default btn-xs" role="button"
+                 data-toggle="tooltip" data-placement="right"
+                 title="Use a logarithmic scale on the y-axis">
+                log scale
+              </a>
+              <a id="zoom-y-axis" class="btn btn-default btn-xs" role="button"
+                 data-toggle="tooltip" data-placement="right"
+                 title="Zoom y axis to the range of the data, rather than down to zero.">
+                zoom <i>y</i> axis
+              </a>
+              <a id="reference" class="btn btn-default btn-xs" role="button"
+                 data-toggle="tooltip" data-placement="right"
+                 title="Select a reference point">
+                reference
+              </a>
+              <a id="even-spacing" class="btn btn-default btn-xs" role="button"
+                 data-toggle="tooltip" data-placement="right"
+                 title="Space commits evenly, rather than by revision, along the x-axis">
+                even commit spacing
+              </a>
+              <a id="date-scale" class="btn btn-default btn-xs" role="button"
+                 data-toggle="tooltip" data-placement="right"
+                 title="Space commits by commit date along the x-axis">
+                date scale
+              </a>
+              <a id="show-legend" class="btn btn-default btn-xs" role="button"
+                 data-toggle="tooltip" data-placement="right"
+                 title="Show legend in the graph">
+                legend
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="position: absolute; left: 220px; top: 60px; bottom: 10px; right: 20px;">
+        <div id="graph">
+          <div style="position: absolute; top: 48px; left: 0; right: 0; bottom: 100px;">
+            <div id="main-graph" style="min-height: 100px; width: 100%; height: 100%"></div>
+          </div>
+          <div style="position: absolute; height: 100px; left: 0; right: 0; bottom: 0; padding-top: 24px">
+            <div id="overview" style="min-height: 100px; width: 100%; height: 100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------ benchmark 'test_add-diff': 2 tests ------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                          Min                Max               Mean            StdDev             Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_add-diff (benchmarks-tests-benchmarks-cli-commands-test_diff.py-test_add/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  41.9268 (11.59)  </span><span class="ansi31"></span><span class="ansi1 ansi31">  41.9268 (11.59)  </span><span class="ansi31"></span><span class="ansi1 ansi31">  41.9268 (11.59)  </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  41.9268 (11.59)  </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.0239 (0.09)   </span>       1           1
-test_add-diff (benchmarks-tests-benchmarks-cli-commands-test_diff.py-test_add/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">   3.6165 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   3.6165 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   3.6165 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   3.6165 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.2765 (1.0)    </span>       1           1
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+    <div id="regressions-display" style="position: absolute; left: 0; top: 55px; width: 100%; height: 100%">
+      <div id="regressions-body">
+      </div>
+    </div>
 
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------- benchmark 'test_checkout-checkout': 2 tests ---------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                           Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_checkout-checkout (benchmarks-tests-benchmarks-cli-commands-test_checkout.py-test_checkout/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  2.7309 (1.01)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  2.7309 (1.01)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  2.7309 (1.01)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  2.7309 (1.01)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.3662 (0.99)   </span>       1           1
-test_checkout-checkout (benchmarks-tests-benchmarks-cli-commands-test_checkout.py-test_checkout/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">  2.7043 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  2.7043 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  2.7043 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  2.7043 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.3698 (1.0)    </span>       1           1
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+    <!-- A modal dialog box for displaying error messages -->
+    <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title alert alert-danger" id="myModalLabel">Error</h4>
+          </div>
+          <div class="modal-body" id="error-message">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------ benchmark 'test_gc-gc': 2 tests -------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in ms)                                                                                                    Min                 Max                Mean            StdDev              Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_gc-gc (benchmarks-tests-benchmarks-cli-commands-test_gc.py-test_gc/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  534.4385 (1.03)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  534.4385 (1.03)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  534.4385 (1.03)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  534.4385 (1.03)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  1.8711 (0.97)   </span>       1           1
-test_gc-gc (benchmarks-tests-benchmarks-cli-commands-test_gc.py-test_gc/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">  518.9603 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  518.9603 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  518.9603 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  518.9603 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  1.9269 (1.0)    </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------- benchmark 'test_get-get': 2 tests ------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                        Min                Max               Mean            StdDev             Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_get-get (benchmarks-tests-benchmarks-cli-commands-test_get.py-test_get/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  43.9958 (8.91)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  43.9958 (8.91)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  43.9958 (8.91)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  43.9958 (8.91)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.0227 (0.11)   </span>       1           1
-test_get-get (benchmarks-tests-benchmarks-cli-commands-test_get.py-test_get/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">   4.9398 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   4.9398 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   4.9398 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   4.9398 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.2024 (1.0)    </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------- benchmark 'test_help---help': 2 tests ---------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in ms)                                                                                                              Min                 Max                Mean            StdDev              Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_help---help (benchmarks-tests-benchmarks-cli-commands-test_help.py-test_help/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  207.3475 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  207.3475 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  207.3475 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  207.3475 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  4.8228 (1.0)    </span>       1           1
-test_help---help (benchmarks-tests-benchmarks-cli-commands-test_help.py-test_help/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  274.5536 (1.32)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  274.5536 (1.32)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  274.5536 (1.32)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  274.5536 (1.32)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  3.6423 (0.76)   </span>       1           1
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------- benchmark 'test_import-import': 2 tests ---------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                    Min                Max               Mean            StdDev             Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_import-import (benchmarks-tests-benchmarks-cli-commands-test_import.py-test_import/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">   8.3774 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   8.3774 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   8.3774 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   8.3774 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.1194 (1.0)    </span>       1           1
-test_import-import (benchmarks-tests-benchmarks-cli-commands-test_import.py-test_import/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  14.0985 (1.68)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  14.0985 (1.68)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  14.0985 (1.68)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  14.0985 (1.68)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.0709 (0.59)   </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------- benchmark 'test_init-init': 2 tests ---------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in ms)                                                                                                            Min                 Max                Mean            StdDev              Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_init-init (benchmarks-tests-benchmarks-cli-commands-test_init.py-test_init/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  499.7290 (1.08)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  499.7290 (1.08)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  499.7290 (1.08)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  499.7290 (1.08)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  2.0011 (0.92)   </span>       1           1
-test_init-init (benchmarks-tests-benchmarks-cli-commands-test_init.py-test_init/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">  460.8847 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  460.8847 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  460.8847 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  460.8847 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  2.1697 (1.0)    </span>       1           1
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------- benchmark 'test_pull-pull': 2 tests -----------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                           Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_pull-pull (benchmarks-tests-benchmarks-cli-commands-test_pull.py-test_pull/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  7.7696 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  7.7696 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  7.7696 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  7.7696 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.1287 (1.0)    </span>       1           1
-test_pull-pull (benchmarks-tests-benchmarks-cli-commands-test_pull.py-test_pull/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  9.4503 (1.22)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  9.4503 (1.22)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  9.4503 (1.22)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  9.4503 (1.22)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.1058 (0.82)   </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------- benchmark 'test_push-push': 2 tests -----------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                           Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_push-push (benchmarks-tests-benchmarks-cli-commands-test_push.py-test_push/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  3.2337 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  3.2337 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  3.2337 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  3.2337 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.3092 (1.0)    </span>       1           1
-test_push-push (benchmarks-tests-benchmarks-cli-commands-test_push.py-test_push/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  3.7048 (1.15)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  3.7048 (1.15)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  3.7048 (1.15)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  3.7048 (1.15)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.2699 (0.87)   </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------------- benchmark 'test_sharing-add': 2 tests --------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                             Min                Max               Mean            StdDev             Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-add (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">   7.8929 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   7.8929 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   7.8929 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">   7.8929 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.1267 (1.0)    </span>       1           1
-test_sharing-add (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  12.1495 (1.54)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  12.1495 (1.54)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  12.1495 (1.54)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  12.1495 (1.54)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.0823 (0.65)   </span>       1           1
-<span class="ansi33">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------ benchmark 'test_sharing-add-noop': 2 tests ------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                                 Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-add-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  1.2922 (1.04)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  1.2922 (1.04)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  1.2922 (1.04)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  1.2922 (1.04)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.7739 (0.96)   </span>       1           1
-test_sharing-add-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">  1.2400 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  1.2400 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  1.2400 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  1.2400 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.8064 (1.0)    </span>       1           1
-<span class="ansi33">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------------------- benchmark 'test_sharing-checkout-noop': 2 tests ----------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in ms)                                                                                                                                       Min                 Max                Mean            StdDev              Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-checkout-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  561.2812 (1.04)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  561.2812 (1.04)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  561.2812 (1.04)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  561.2812 (1.04)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  1.7816 (0.97)   </span>       1           1
-test_sharing-checkout-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">  542.2634 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  542.2634 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  542.2634 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  542.2634 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  1.8441 (1.0)    </span>       1           1
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------ benchmark 'test_sharing-pull': 2 tests ------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                             Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-pull (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  8.1067 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  8.1067 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  8.1067 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  8.1067 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.1234 (1.0)    </span>       1           1
-test_sharing-pull (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  8.7818 (1.08)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  8.7818 (1.08)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  8.7818 (1.08)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  8.7818 (1.08)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.1139 (0.92)   </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------ benchmark 'test_sharing-pull-noop': 2 tests ------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                                  Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-pull-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi31"></span><span class="ansi1 ansi31">  1.2820 (2.20)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  1.2820 (2.20)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  1.2820 (2.20)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  1.2820 (2.20)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.7800 (0.45)   </span>       1           1
-test_sharing-pull-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi32"></span><span class="ansi1 ansi32">  0.5830 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  0.5830 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  0.5830 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  0.5830 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  1.7153 (1.0)    </span>       1           1
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------ benchmark 'test_sharing-push': 2 tests ------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                             Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-push (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  4.4604 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  4.4604 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  4.4604 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  4.4604 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.2242 (1.0)    </span>       1           1
-test_sharing-push (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  5.2079 (1.17)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  5.2079 (1.17)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  5.2079 (1.17)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  5.2079 (1.17)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.1920 (0.86)   </span>       1           1
-<span class="ansi33">----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">---------------------------------------------------------------------------------------------------------------------------------- benchmark 'test_sharing-push-noop': 2 tests ----------------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in ms)                                                                                                                                   Min                 Max                Mean            StdDev              Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_sharing-push-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  504.8620 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  504.8620 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  504.8620 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  504.8620 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  1.9807 (1.0)    </span>       1           1
-test_sharing-push-noop (benchmarks-tests-benchmarks-cli-stories-use-cases-test_sharing.py-test_sharing/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  558.8041 (1.11)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  558.8041 (1.11)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  558.8041 (1.11)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  558.8041 (1.11)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  1.7895 (0.90)   </span>       1           1
-<span class="ansi33">-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------ benchmark 'test_status-status': 2 tests -------------------------------------------------------------------------------------------------------------------------</span>
-Name (time in s)                                                                                                                   Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-test_status-status (benchmarks-tests-benchmarks-cli-commands-test_status.py-test_status/Linux-CPython-3.7-64bit/0001_2.5.4)   <span class="ansi32"></span><span class="ansi1 ansi32">  2.7246 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  2.7246 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  2.7246 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi32"></span><span class="ansi1 ansi32">  2.7246 (1.0)    </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi32"></span><span class="ansi1 ansi32">  0.3670 (1.0)    </span>       1           1
-test_status-status (benchmarks-tests-benchmarks-cli-commands-test_status.py-test_status/Linux-CPython-3.7-64bit/0002_2.6.0)   <span class="ansi31"></span><span class="ansi1 ansi31">  5.2733 (1.94)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  5.2733 (1.94)   </span><span class="ansi31"></span><span class="ansi1 ansi31">  5.2733 (1.94)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span><span class="ansi31"></span><span class="ansi1 ansi31">  5.2733 (1.94)   </span><span class="ansi32"></span><span class="ansi31"></span><span class="ansi1 ansi31">  0.0000 (1.0)    </span>       0;0<span class="ansi31"></span><span class="ansi1 ansi31">  0.1896 (0.52)   </span>       1           1
-<span class="ansi33">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-Legend:
-  Outliers: 1 Standard Deviation from Mean; 1.5 IQR (InterQuartile Range) from 1st Quartile and 3rd Quartile.
-  OPS: Operations Per Second, computed as 1 / Mean
-
-</pre>
-</body>
-
+  </body>
 </html>
