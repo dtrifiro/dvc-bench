@@ -9,6 +9,6 @@ stages:
         cache: false
         x: 'param:dvc_rev'
         x_label: 'DVC Revision'
-        y: mean
-        y_label: 'Mean Time'
+        y: median
+        y_label: 'Median Time'
         template: linear_versions

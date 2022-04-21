@@ -16,7 +16,14 @@ cat raw | ansi2html -W > html/index.html
 for file in $(find .benchmarks -type f);
 do
   rm -rf tmp_html results.csv raw
-  PY_COLORS=1 py.test-benchmark compare $file --histogram histograms/ --group-by func --csv results.csv --sort name >> raw
+  PY_COLORS=1 py.test-benchmark compare \
+    $file \
+    --histogram histograms/ \
+    --group-by func \
+    --csv results.csv \
+    --sort name \
+    --column median,stddev,rounds,iterations \
+    >>raw
   dvc repro --no-run-cache
   dvc plots show -o tmp_html
   cat tmp_html/index.html >> html/index.html
