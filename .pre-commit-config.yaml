@@ -32,4 +32,12 @@ repos:
       language_version: python3
   repo: https://github.com/lovesegfault/beautysh
   rev: v6.1.0
-
+- hooks:
+  - id: generate-tests
+    name: "Generate tests"
+    pass_filenames: false
+    always_run: true
+    language: system
+    files: tests
+    entry: ./scripts/ci/list_tests.sh > tests/tests.json && git add tests/tests.json
+  repo: local

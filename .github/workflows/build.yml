@@ -52,7 +52,7 @@ jobs:
       - name: install reqs
         run: pip install -r requirements.txt
       - id: tests
-        run: echo "::set-output name=tests::$(./scripts/ci/list_tests.sh)"
+        run: echo "::set-output name=tests::$(cat tests/tests.json)"
   build:
     needs: [gen]
     timeout-minutes: 180
