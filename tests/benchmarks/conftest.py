@@ -108,8 +108,8 @@ def make_dataset(request, test_config, tmp_dir, pytestconfig):
     def _make_dataset(
         dvcfile=False, files=True, cache=False, commit=False, remote=False
     ):
-        from dvc.repo import Repo
         from dvc.exceptions import CheckoutError, DownloadError
+        from dvc.repo import Repo
 
         path = tmp_dir / "dataset"
         root = pytestconfig.rootpath
